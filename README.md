@@ -103,8 +103,8 @@ Unpacked: 58 Packed: 36 Compression: 62% Tomáš Konečný, Lesní 14, 739 81 By
 
 Without other arguments, bpe_encode tries all availabled training data to see which one produces smallest result.
 This adds significant cost on processing speed. To improve compression speed, you can either specify lower limit
-on traning data used (while still testing all of the trained models), or you can select particular model
-manually by providing country code.
+on traning data used (providing as a percentage, while still testing all of the trained models), or you can
+select particular model manually by providing country code. Or both.
 
     let e=bpe_encode(s);            // without parameters - try all models, no limit, slow but best compression
     let e=bpe_encode(s, 30);        // first parameter specifies 30% limit on training data (merged pairs), still tries all models
