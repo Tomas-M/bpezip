@@ -1,3 +1,8 @@
+class base64 {
+   static encode(u8) { return btoa(String.fromCharCode(...u8)); }
+   static decode(b64) { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); }
+}
+
 // Frame-of-Reference + bit-packing codec
 // This is used to encode bunch of integers into smallest possible space
 // effectively storing them as like xz compressed.
