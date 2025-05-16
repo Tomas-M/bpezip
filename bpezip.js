@@ -1,6 +1,6 @@
 class base64 {
   static encode(u8) { if (typeof btoa !== 'undefined') return btoa(String.fromCharCode(...u8)); else return Buffer.from(u8).toString('base64'); }
-  static decode(b64) { if (typeof atob !== 'undefined') { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); else return Uint8Array.from(Buffer.from(b64, 'base64')); }
+  static decode(b64) { if (typeof atob !== 'undefined') return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); else return Uint8Array.from(Buffer.from(b64, 'base64')); }
 }
 
 
