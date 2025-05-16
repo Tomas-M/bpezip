@@ -1,7 +1,8 @@
 class base64 {
-   static encode(u8) { return btoa(String.fromCharCode(...u8)); }
-   static decode(b64) { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); }
+  static encode(u8) { if (typeof btoa !== 'undefined') return btoa(String.fromCharCode(...u8)); else return Buffer.from(u8).toString('base64'); }
+  static decode(b64) { if (typeof atob !== 'undefined') { return Uint8Array.from(atob(b64), c => c.charCodeAt(0)); else return Uint8Array.from(Buffer.from(b64, 'base64')); }
 }
+
 
 // Frame-of-Reference + bit-packing codec
 // This is used to encode bunch of integers into smallest possible space
@@ -257,7 +258,7 @@ BytePairEncoding.prototype.toBuffer = function ()
     ints[i * 2]     = a;
     ints[i * 2 + 1] = b;
   });
-  return Buffer.from(TightInts.encode(ints));
+  return base64.encode(TightInts.encode(ints));
 };
 
 
@@ -344,7 +345,7 @@ function bpe_encode(s, limit, code = null) {
     let training = bpe_get_training(c);
     if (!training) return;
 
-    let bpe = BytePairEncoding.fromBuffer(Buffer.from(training, 'base64'), limit, true);
+    let bpe = BytePairEncoding.fromBuffer(base64.decode(training), limit, true);
     let enc = bpe.encode(s).slice(0, -1); // remove trailing null
     let packed = varInt.encode(enc);
     let result = Uint8Array.of(ix, ...packed);
@@ -362,7 +363,7 @@ function bpe_decode(ar)
   if (ix==0) return (new TextDecoder()).decode(ar.slice(1)); // uncompressed
 
   let code=bpe_codes()[ix];
-  let bpe = BytePairEncoding.fromBuffer(Buffer.from(bpe_get_training(code), 'base64'));
+  let bpe = BytePairEncoding.fromBuffer(base64.decode(bpe_get_training(code)));
   return bpe.decode(varInt.decode(ar.slice(1)));
 }
 
