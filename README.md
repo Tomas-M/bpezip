@@ -17,3 +17,57 @@ Advantages of this compression approach include highly efficient representation 
 
 The result is a highly compact representation of short texts, making it ideal for bandwidth-limited applications such as IoT devices, low-bandwidth networks, or extensive databases containing numerous small entries. With its adaptive, country-aware, and optimized approach, this BPE-based compression algorithm provides a significant advancement in data efficiency, especially addressing the challenge of compressing short textual data.
 
+Example:
+```
+<script src=bpezip.js></script>
+<script>
+
+    function testit(s)
+    {
+      let e=bpe_encode(s);
+      let d=bpe_encode(s,100,'x');
+      console.log("Unpacked:",d.length,"Packed:",e.length,
+                  "Compression:",Math.floor(e.length*100/d.length).toFixed(0)+"%",bpe_decode(e));
+    }
+
+    testit('Emily Watson, 47 Wattle Crescent, 2602 Ainslie');
+    testit('蒋青莲, 云岩区燕雀巷17号碧霄楼, 550002 贵阳');
+    testit('Rigmor Kjeldsen, Møllestien 14, 8000 Aarhus C');
+    testit('عائشة محروس, زقاق المدابغ ٣, ١١٦٢٢ الجيزة');
+    testit('Unto Kuusisto, Paimenenpolku 7 A 4, 66950 Jurva');
+    testit('Léontine Perrault, 4 Impasse des Rossignols, 17110 Saint-Georges-de-Didonne');
+    testit('Ulrich Wiesengrund, Finkenrain 9, 79199 Kirchzarten');
+    testit('Zsombor Holló, Rákóczi-rét 3, 3300 Eger');
+    testit('Helga Skaptadóttir, Ránargata 14, 101 Reykjavík');
+    testit('र  ुक  ्म  िण  ी च  ौह  ान, 12 खज  ूर म  ार  ्ग, 305001 अजम  ेर');
+    testit('Ratna Pramudita, Gg. Sedap Malam 4, 80235 Denpasar');
+    testit('水野 ちとせ, 京都市左京区鹿ケ谷桜谷町25-7, 606-8443 京都');
+    testit('زاہد حسین, گلی برسات ۵۲, ۵۴۰۰۰ لاہور');
+    testit('Maite Cifuentes, Calle Camarones 6234, C1419 Buenos Aires');
+    testit('Wouter Baks, Noorderdwarsstraat 2, 3513 Utrecht');
+    testit('Tomáš Konečný, Lesní 14, 739 81 Bystřice nad Olší');
+
+</script>
+```
+
+This produces output like this
+
+```
+Unpacked: 47 Packed: 25 Compression: 53% Emily Watson, 47 Wattle Crescent, 2602 Ainslie
+Unpacked: 59 Packed: 46 Compression: 77% 蒋青莲, 云岩区燕雀巷17号碧霄楼, 550002 贵阳
+Unpacked: 47 Packed: 28 Compression: 59% Rigmor Kjeldsen, Møllestien 14, 8000 Aarhus C
+Unpacked: 75 Packed: 41 Compression: 54% عائشة محروس, زقاق المدابغ ٣, ١١٦٢٢ الجيزة
+Unpacked: 48 Packed: 30 Compression: 62% Unto Kuusisto, Paimenenpolku 7 A 4, 66950 Jurva
+Unpacked: 77 Packed: 36 Compression: 46% Léontine Perrault, 4 Impasse des Rossignols, 17110 Saint-Georges-de-Didonne
+Unpacked: 52 Packed: 29 Compression: 55% Ulrich Wiesengrund, Finkenrain 9, 79199 Kirchzarten
+Unpacked: 44 Packed: 26 Compression: 59% Zsombor Holló, Rákóczi-rét 3, 3300 Eger
+Unpacked: 51 Packed: 35 Compression: 68% Helga Skaptadóttir, Ránargata 14, 101 Reykjavík
+Unpacked: 108 Packed: 69 Compression: 63% र ुक ्म िण ी च ौह ान, 12 खज ूर म ार ्ग, 305001 अजम ेर
+Unpacked: 51 Packed: 33 Compression: 64% Ratna Pramudita, Gg. Sedap Malam 4, 80235 Denpasar
+Unpacked: 76 Packed: 43 Compression: 56% 水野 ちとせ, 京都市左京区鹿ケ谷桜谷町25-7, 606-8443 京都
+Unpacked: 65 Packed: 45 Compression: 69% زاہد حسین, گلی برسات ۵۲, ۵۴۰۰۰ لاہور
+Unpacked: 58 Packed: 35 Compression: 60% Maite Cifuentes, Calle Camarones 6234, C1419 Buenos Aires
+Unpacked: 48 Packed: 26 Compression: 54% Wouter Baks, Noorderdwarsstraat 2, 3513 Utrecht
+Unpacked: 58 Packed: 36 Compression: 62% Tomáš Konečný, Lesní 14, 739 81 Bystřice nad Olší
+
+```
