@@ -47,6 +47,10 @@ of compressing short textual data.
 
 Example:
 ```
+<head>
+<meta charset="utf-8">
+</head>
+
 <script src=bpezip.js></script>
 <script>
 
