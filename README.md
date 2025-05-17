@@ -119,3 +119,9 @@ Note that, for example, compressing an Italian text with Chinese training data (
 
 When the encoded data is bigger than the original, it returns the original text inflated by 1 null byte at the beginning.
 So the compressed data is never bigger than 100% of the original plus 1 byte.
+
+# Training
+
+If you want to train your own models, you can do so by using the train() function.
+This code is included in bpezip.js but is commented out. See the code section around line 300.
+(it assumes you run it with nodejs and loads texts for training from corpus.txt)
