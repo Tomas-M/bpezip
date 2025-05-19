@@ -338,6 +338,7 @@ function bpe_encode(s, limit, code = null) {
   let bytes = (new TextEncoder()).encode(s);
   let codes = bpe_codes();
   let best = Uint8Array.of(0, ...bytes); // default to uncompressed
+  if (limit == 0) return best;
 
   codes.forEach((c, ix) => {
     if (ix === 0 || (code && c !== code)) return;
