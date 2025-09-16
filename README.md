@@ -14,8 +14,7 @@ When you compress text:
 - Common character sequences are stored as single tokens, making the result shorter.
 - The encoder can use models trained for specific countries to match language patterns.
 - If no country is specified, it tries all models and picks the one that gives the smallest result.
-
-There is also a TightInts feature that compresses sequences of numbers even further by storing differences instead of full values.
+- The result is further compressed using TightInts feature which shortens sequences of numbers even further by storing differences instead of full values.
 
 Note: Models are labeled by country code instead of language code, because they were trained on street names from those countries.
 
