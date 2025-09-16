@@ -2,9 +2,9 @@
 
 __Compression of short texts using pre-trained BPE encoding (JavaScript)__
 
-Most compression methods only work well on long inputs. This one also works on very short texts (a few bytes).
+Most compression methods only work well on long inputs. BPEZip also works on very short texts (a few bytes).
 It uses pre-trained Byte Pair Encoding (BPE) vocabularies, which replace common patterns with shorter tokens.
-This makes it useful for things like street names, IDs, or short phrases.
+This makes it useful for things like short phrases or especially street names, which were used for training.
 
 **How it works**
 
